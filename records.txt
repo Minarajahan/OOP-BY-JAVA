@@ -1,0 +1,4 @@
+StudentID,Name,CourseName,CourseGrade,Term
+1001,MINARA,JAVA,A+,Fall2023
+1002,RITA,Science,B,Spring2024
+1003,ZOUBIDA,OOP,B+,Summer2024

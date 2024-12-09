@@ -1,0 +1,5 @@
+
+1001,Alice,Math,A,Fall 2023
+
+1002,Bob,SCIENCE,B+,Spring 2024
+1003,Charlie,History,A,Summer 2024
