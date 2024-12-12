@@ -1,0 +1,73 @@
+Name:Akter Ratre -202322240320
+Name:Jahan Minara-202322240308
+
+
+
+CREATE DATABASE LIBRARY;
+USE LIBRARY;
+
+CREATE TABLE BOOKS(
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Author VARCHAR(255) NOT NULL,
+    AvailableCopies INT NOT NULL
+);
+
+CREATE TABLE Borrowers(
+    BorrowerID INT PRIMARY KEY,
+    BorrowerName VARCHAR(255) NOT NULL,
+    BorrowedBookID INT,
+    BorrowDate DATE NOT NULL,
+    ReturnDate DATE NULL,
+    FOREIGN KEY (BorrowedBookID) REFERENCES BOOKS(BookID)
+);
+
+INSERT INTO BOOKS (BookID, Title, Author, AvailableCopies) VALUES
+(1, 'The Great Gatsby', 'F. Scott', 3),
+(2, 'To Kill a Mockingbird', 'Harper Lee', 0),
+(3, '1984', 'George Orwell', 2),
+(4, 'Moby Dick', 'Herman Melville', 1),
+(5, 'Pride and Prejudice', 'Jane Austen', 4),
+(6, 'War and Peace', 'Leo Tolstoy', 2),
+(7, 'The Catcher in the Rye', 'J.D. Salinger', 5),
+(8, 'Brave New World', 'Aldous Huxley', 1),
+(9, 'Fahrenheit 451', 'Ray Bradbury', 3),
+(10, 'The Picture of Dorian Gray', 'Oscar Wilde', 24);
+
+INSERT INTO Borrowers (BorrowerID, BorrowerName, BorrowedBookID, BorrowDate, ReturnDate) VALUES
+(1, 'Alice', 1, '2023-11-01', NULL),
+(2, 'Bob', 2, '2023-11-05', NULL),
+(3, 'Charlie', 3, '2023-11-07', NULL),
+(4, 'David', 1, '2023-11-08', NULL),
+(5, 'Eva', 4, '2023-11-10', NULL),
+(6, 'Frank', 5, '2023-11-12', NULL),
+(7, 'Grace', 6, '2023-11-13', NULL),
+(8, 'Hank', 7, '2023-11-14', NULL),
+(9, 'Ivy', 8, '2023-11-15', NULL),
+(10, 'Jack', 9, '2023-11-16', NULL);
+
+
+SELECT BorrowedBookID
+FROM Borrowers;
+
+Select AvailableCopies,Author
+From BOOKS;
+
+SELECT BorrowerName,BorrowedBookID
+FROM Borrowers
+Where BorrowedBookID >1;
+
+SELECT Title, AvailableCopies
+FROM BOOKS;
+
+SELECT b.Title, br.BorrowerName
+FROM BOOKS b
+JOIN Borrowers br ON b.BookID = br.BorrowedBookID
+WHERE br.ReturnDate IS NULL;
+
+SELECT Title
+FROM BOOKS
+WHERE BookID NOT IN (
+    SELECT BorrowedBookID
+    FROM Borrowers
+);
